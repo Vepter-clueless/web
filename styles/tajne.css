@@ -272,3 +272,29 @@ body {
     display: block;
     width: 0;
 }
+/* Styl pro falešné mazání souborů */
+#deletion-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Aby přes to šlo klikat (nebo ne, to je jedno) */
+    z-index: 10000;
+}
+
+.delete-alert {
+    position: absolute;
+    background: #ff0000;
+    color: white;
+    padding: 15px;
+    border: 2px solid white;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    box-shadow: 5px 5px 15px black;
+    width: 300px;
+    animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

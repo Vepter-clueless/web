@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYSTEM ERROR // ADMIN ACCESS</title>
     
-    <link rel="stylesheet" href="/styles/tajne.css">
+    <link rel="stylesheet" href="/web/styles/tajne.css">
 </head>
 <body>
 
@@ -71,11 +71,13 @@
 
     <div id="clippy">
         <div class="bubble" id="clippyText">Vypadá to, že hackuješ školní síť.</div>
-        <img src="/img/clippy.png" alt="Clippy">
+        <img src="/web/img/clippy.png" alt="Clippy">
     </div>
+    
 
     <div id="fake-overlay">
-        <audio id="scarySound" src="/sound/faah.mp3"></audio>
+        <div id="deletion-container"></div>
+        <audio id="scarySound" src="/web/sound/faah.mp3"></audio>
         
         <div id="terminal"></div>
 
@@ -118,7 +120,7 @@
                         <input type="text" class="wc-input" value="1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2" readonly>
                     </div>
                     <button class="pay-btn" onclick="solveRansomware()">CHECK PAYMENT</button>
-                    <button class="pay-btn" style="background: #ddd; color: #333;" onclick="alert('Decrypting...')">DECRYPT</button>
+                    <button class="pay-btn" style="background: #ddd; color: #333;" onclick="trapDecrypt()">DECRYPT</button>
                 </div>
             </div>
         </div>
@@ -126,14 +128,14 @@
         <div class="final-troll" id="finalTroll">
             <h1>PAYMENT ACCEPTED!</h1>
             <p>Díky za sponzorský dar.</p>
-            <img src="/img/cat.jpg" alt="Kočka" style="max-width: 300px; border-radius: 20px; box-shadow: 0 0 20px black;">
+            <img src="/web/img/cat.jpg" alt="Kočka" style="max-width: 300px; border-radius: 20px; box-shadow: 0 0 20px black;">
             <h2>Doporučení pro budoucnost:</h2>
-            <img src="/img/job.png" alt="Práce" style="width: 60%; border: 1px solid black; margin-top: 20px;">
+            <img src="/web/img/job.png" alt="Práce" style="width: 60%; border: 1px solid black; margin-top: 20px;">
             <br><br>
             <button onclick="location.reload()" style="padding: 10px 20px; font-size: 18px;">RESTART SYSTEM</button>
         </div>
     </div>
 
-    <script src="/js/tajne.js"></script>
+    <script src="/web/js/tajne.js"></script>
 </body>
 </html>

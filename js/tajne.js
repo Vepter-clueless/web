@@ -126,6 +126,11 @@ function startClippyJokes() {
 }
 
 /* --- 3. HACK A RANSOMWARE LOGIKA --- */
+
+// Globální proměnné pro časovač, abychom ho mohli ovládat odkudkoliv
+let timerInterval;
+let totalSeconds;
+
 function triggerHack() {
     let elem = document.documentElement;
     if (elem.requestFullscreen) elem.requestFullscreen();
@@ -150,32 +155,105 @@ function triggerHack() {
 
 function showRansomware() {
     let wc = document.getElementById('ransomware');
-    wc.style.display = 'flex'; // Zobrazí se jako Flexbox (sloupce)
+    wc.style.display = 'flex';
     
     let audio = document.getElementById('scarySound');
     audio.play().catch(e => console.log("Audio needs interaction"));
     
     document.body.style.cursor = 'progress'; 
     
-    // Spustit odpočet
-    startTimer('timer1', 2 * 60 * 60 + 59 * 60 + 59); // 3 hodiny
-    startTimer('timer2', 23 * 60 * 60 + 59 * 60 + 59); // 24 hodin
+    // Spustit odpočet - 10 minut (600 sekund)
+    startTimer(600); 
 }
 
-function startTimer(elementId, seconds) {
-    let el = document.getElementById(elementId);
-    let interval = setInterval(() => {
-        seconds--;
-        let h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-        let m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-        let s = (seconds % 60).toString().padStart(2, '0');
+function startTimer(seconds) {
+    totalSeconds = seconds;
+    let el = document.getElementById('timer1'); // Použijeme ten hlavní červený časovač
+    
+    timerInterval = setInterval(() => {
+        totalSeconds--;
+        
+        // Formátování času HH:MM:SS
+        let h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+        let m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+        let s = (totalSeconds % 60).toString().padStart(2, '0');
         el.innerText = `${h}:${m}:${s}`;
-        if (seconds <= 0) clearInterval(interval);
+        
+        // Konec odpočtu
+        if (totalSeconds <= 0) {
+            clearInterval(timerInterval);
+            el.innerText = "00:00:00";
+            startFakeDeletion(); // SPUSTIT MAZÁNÍ!
+        }
     }, 1000);
 }
 
+// Funkce pro tlačítko "DECRYPT" - Toto je ta past!
+function trapDecrypt() {
+    alert("CRITICAL ERROR: Payment verification failed! Penalty applied.");
+    
+    // Zrychlíme čas - skočíme rovnou na 3 sekundy do konce
+    totalSeconds = 3; 
+    
+    // Změníme barvu časovače na rudou
+    document.getElementById('timer1').style.color = "red";
+    document.getElementById('timer1').style.fontSize = "40px";
+}
+
+// Funkce pro falešné mazání souborů
+function startFakeDeletion() {
+    const funnyFolders = [
+        "Domácí úkoly 2024",
+        "Složka s trapnými fotkami",
+        "Minecraft Save World",
+        "Brawl Stars Účet (Login)",
+        "Instagram Hesla",
+        "Plocha",
+        "Stažené soubory",
+        "TikTok Videa (Drafts)",
+        "System32",
+        "Windows Kernel"
+    ];
+
+    let container = document.getElementById('deletion-container');
+    let i = 0;
+
+    // Rychlá smyčka, která sype okna
+    let deleteInterval = setInterval(() => {
+        if (i >= funnyFolders.length) {
+            clearInterval(deleteInterval);
+            // Finále po smazání všeho
+            setTimeout(() => {
+                alert("SYSTEM DESTROYED. GOODBYE.");
+                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Rickroll
+            }, 2000);
+            return;
+        }
+
+        // Vytvoření okna
+        let div = document.createElement('div');
+        div.className = 'delete-alert';
+        div.innerText = "❌ DELETING: " + funnyFolders[i];
+        
+        // Náhodná pozice na obrazovce
+        let x = Math.floor(Math.random() * (window.innerWidth - 300));
+        let y = Math.floor(Math.random() * (window.innerHeight - 100));
+        div.style.left = x + 'px';
+        div.style.top = y + 'px';
+
+        container.appendChild(div);
+        
+        // Přehrát zvuk (volitelné, pokud bys chtěl extra efekt)
+        // document.getElementById('scarySound').play();
+
+        i++;
+    }, 800); // Každých 0.8 sekundy jedno okno
+}
+
 function solveRansomware() {
+    // Tlačítko Check Payment funguje správně
     document.getElementById('ransomware').style.display = 'none';
     document.getElementById('finalTroll').style.display = 'block';
     document.body.style.cursor = 'default';
+    clearInterval(timerInterval); // Zastavit odpočet, když zaplatí
 }
