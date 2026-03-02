@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM ERROR // ADMIN ACCESS</title>
+    
+    <link rel="stylesheet" href="/styles/tajne.css">
+</head>
+<body>
+
+    <div class="lock-screen" id="lockScreen">
+        <h2>🔒 PŘÍSNĚ TAJNÉ</h2>
+        <p>Zadejte kód pro přístup.<br><small>(HINT: F12 -> Console)</small></p>
+        <p>Pokusy: <span id="attemptsLeft" style="color: red;">10</span></p>
+
+        <div class="pin-display">
+            <div class="pin-digit" id="d0"></div>
+            <div class="pin-digit" id="d1"></div>
+            <div class="pin-digit" id="d2"></div>
+            <div class="pin-digit" id="d3"></div>
+        </div>
+        
+        <div class="numpad">
+            <button class="num-btn" onclick="addNum(1)">1</button>
+            <button class="num-btn" onclick="addNum(2)">2</button>
+            <button class="num-btn" onclick="addNum(3)">3</button>
+            <button class="num-btn" onclick="addNum(4)">4</button>
+            <button class="num-btn" onclick="addNum(5)">5</button>
+            <button class="num-btn" onclick="addNum(6)">6</button>
+            <button class="num-btn" onclick="addNum(7)">7</button>
+            <button class="num-btn" onclick="addNum(8)">8</button>
+            <button class="num-btn" onclick="addNum(9)">9</button>
+            <button class="num-btn" onclick="clearInput()">C</button>
+            <button class="num-btn" onclick="addNum(0)">0</button>
+            <button class="num-btn" style="background: #00ff00; color: black;" onclick="checkCode()">ENTER</button>
+        </div>
+        
+        <p id="message" style="height: 20px;"></p>
+        <div class="history-container" id="historyLog"></div>
+    </div>
+
+    <div class="meme-content" id="memeContent">
+        <h1 style="border-bottom: 2px solid #0f0; padding-bottom: 10px;">🕵️‍♂️ DARK WEB PORTAL 🕵️‍♂️</h1>
+        
+        <div class="grid-memes">
+            <div class="box">
+                <h3>🚀 Zrychlit PC</h3>
+                <p>Máš málo FPS ve hrách?</p>
+                <progress value="0" max="100" id="ramProgress" style="width: 100%;"></progress>
+                <button onclick="downloadRam()">Stáhnout 64GB RAM</button>
+                <p id="ramText" style="font-size: 12px;"></p>
+            </div>
+            <div class="box">
+                <h3>🗑️ Čistič Disku</h3>
+                <p>Uvolni místo na disku C:</p>
+                <button onclick="deleteSystem32()">Smazat System32</button>
+            </div>
+            <div class="box">
+                <h3>🎨 Lepší grafika</h3>
+                <p>Klikni pro PRO režim.</p>
+                <button onclick="toggleComicSans()">Aktivovat Comic Sans</button>
+            </div>
+            <div class="box" style="border-color: red;">
+                <h3 style="color: red;">⚠️ ZÁKAZ VSTUPU</h3>
+                <p>Nedotýkej se tlačítka.</p>
+                <button id="dangerBtn" onmouseover="moveButton()" onclick="triggerHack()">NEKLIKAT!</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="clippy">
+        <div class="bubble" id="clippyText">Vypadá to, že hackuješ školní síť.</div>
+        <img src="/img/clippy.png" alt="Clippy">
+    </div>
+
+    <div id="fake-overlay">
+        <audio id="scarySound" src="/sound/faah.mp3"></audio>
+        
+        <div id="terminal"></div>
+
+        <div class="wc-container" id="ransomware">
+            <div class="wc-header">Ooops, your files have been encrypted!</div>
+            <div class="wc-body">
+                <div class="wc-sidebar">
+                    <div style="font-size: 80px; text-align: center;">🔒</div>
+                    <div class="wc-timer-box">
+                        <h4>Payment will be raised on:</h4>
+                        <div style="font-size: 14px;">3/2/2026 14:00:00</div>
+                        <div class="timer" id="timer1">02:59:59</div>
+                        <small>Time Left</small>
+                    </div>
+                    <div class="wc-timer-box" style="background: #a00; color: white; border-color: red;">
+                        <h4>Your files will be lost on:</h4>
+                        <div style="font-size: 14px;">3/5/2026 14:00:00</div>
+                        <div class="timer" id="timer2">23:59:59</div>
+                        <small>Time Left</small>
+                    </div>
+                </div>
+
+                <div class="wc-content">
+                    <h2>What Happened to My Computer?</h2>
+                    <p>Your important files are <strong>encrypted</strong>.</p>
+                    <p>Many of your documents, photos, videos, databases and other files are no longer accessible because they have been encrypted. Maybe you are busy looking for a way to recover your files, but do not waste your time. Nobody can recover your files without our decryption service.</p>
+                    
+                    <h3>Can I Recover My Files?</h3>
+                    <p>Sure. We guarantee that you can recover all your files safely and easily. But you have not so enough time.</p>
+                    <p>You can decrypt some of your files for free. But if you want to decrypt all your files, you need to pay.</p>
+                    <p style="color: red; font-weight: bold;">You only have 3 days to submit the payment.</p>
+                </div>
+            </div>
+
+            <div class="wc-footer">
+                <div style="display: flex; gap: 10px; align-items: center; width: 100%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png" width="50">
+                    <div style="flex:1;">
+                        <label>Send $300 worth of bitcoin to this address:</label>
+                        <input type="text" class="wc-input" value="1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2" readonly>
+                    </div>
+                    <button class="pay-btn" onclick="solveRansomware()">CHECK PAYMENT</button>
+                    <button class="pay-btn" style="background: #ddd; color: #333;" onclick="alert('Decrypting...')">DECRYPT</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="final-troll" id="finalTroll">
+            <h1>PAYMENT ACCEPTED!</h1>
+            <p>Díky za sponzorský dar.</p>
+            <img src="/img/cat.jpg" alt="Kočka" style="max-width: 300px; border-radius: 20px; box-shadow: 0 0 20px black;">
+            <h2>Doporučení pro budoucnost:</h2>
+            <img src="/img/job.png" alt="Práce" style="width: 60%; border: 1px solid black; margin-top: 20px;">
+            <br><br>
+            <button onclick="location.reload()" style="padding: 10px 20px; font-size: 18px;">RESTART SYSTEM</button>
+        </div>
+    </div>
+
+    <script src="/js/tajne.js"></script>
+</body>
+</html>

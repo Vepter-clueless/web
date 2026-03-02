@@ -1,0 +1,274 @@
+/* --- GLOBÁLNÍ STYLY --- */
+body {
+    background-color: #111;
+    color: #0f0; /* Matrix zelená */
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* --- 1. HRA (ZÁMEK) --- */
+.lock-screen {
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: center;
+    background: #222;
+    padding: 30px;
+    border: 2px solid #0f0;
+    box-shadow: 0 0 20px #0f0;
+    border-radius: 10px;
+}
+
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pin-digit {
+    width: 50px;
+    height: 60px;
+    font-size: 30px;
+    background: #000;
+    border: 2px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Barvy pro Wordle logiku */
+.correct { background-color: #00cc00; border-color: #00cc00; color: black; }
+.present { background-color: #ffaa00; border-color: #ffaa00; color: black; }
+.wrong { background-color: #555; border-color: #555; color: #aaa; }
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.num-btn {
+    padding: 15px;
+    font-size: 20px;
+    background: #333;
+    color: #0f0;
+    border: 1px solid #0f0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.num-btn:hover { background: #0f0; color: black; }
+
+.history-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.history-row { display: flex; gap: 5px; }
+.history-digit { 
+    width: 25px; height: 25px; 
+    display: flex; align-items: center; justify-content: center; 
+    font-weight: bold; border-radius: 3px; font-size: 14px;
+}
+
+/* --- 2. OBSAH PO ODEMČENÍ (MEMES) --- */
+.meme-content {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.grid-memes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.box {
+    border: 1px dashed #555;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+}
+
+#dangerBtn {
+    position: relative;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.1s;
+}
+
+/* Comic Sans mód */
+.comic-mode {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+    color: #ff00ff !important;
+    background-color: yellow !important;
+}
+
+/* --- 3. RANSOMWARE (WannaCry Style) --- */
+#fake-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: black; z-index: 9999;
+    overflow: hidden;
+}
+
+#terminal {
+    padding: 20px;
+    color: lime;
+    font-family: monospace;
+}
+
+/* Design WannaCry */
+.wc-container {
+    display: none; /* Skryté, dokud neproběhne hack */
+    width: 100%;
+    height: 100%;
+    background-color: #800000;
+    font-family: Arial, sans-serif;
+    color: white;
+    flex-direction: column;
+}
+
+.wc-header {
+    background: #a00;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 3px solid white;
+}
+
+.wc-body {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+}
+
+.wc-sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wc-timer-box {
+    background: #ffe680;
+    color: black;
+    padding: 10px;
+    border: 2px solid white;
+    text-align: center;
+}
+.wc-timer-box h4 { margin: 0; font-size: 14px; }
+.wc-timer-box .timer { font-size: 28px; font-weight: bold; color: #d00; font-family: monospace; }
+
+.wc-content {
+    flex: 1;
+    background: white;
+    color: black;
+    padding: 20px;
+    border: 2px solid #555;
+    overflow-y: auto;
+}
+
+.wc-content h2 { margin-top: 0; text-decoration: underline; }
+.wc-content strong { color: #800000; }
+
+.wc-footer {
+    padding: 20px;
+    background: #800000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.wc-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    background: white;
+    color: black;
+    border: none;
+}
+
+.pay-btn {
+    background: #f39c12;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 30px;
+    cursor: pointer;
+    border: 2px solid white;
+    animation: blink 0.8s infinite alternate;
+}
+@keyframes blink { from { opacity: 1; } to { opacity: 0.7; } }
+
+/* --- 4. FINÁLNÍ TROLL --- */
+.final-troll {
+    display: none;
+    background: white;
+    width: 100%; height: 100%;
+    text-align: center;
+    padding-top: 30px;
+    color: black;
+}
+
+/* Pan Sponka */
+#clippy {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px; /* Šířka bubliny/kontejneru */
+    text-align: center;
+    display: none; /* Schovaný, dokud se neodemkne */
+    z-index: 100;
+}
+
+/* TOTO JE TA OPRAVA: */
+#clippy img {
+    width: 120px;       /* Pevná šířka - můžeš změnit třeba na 100px nebo 150px */
+    height: auto;       /* Výška se dopočítá automaticky, aby se obrázek nedeformoval */
+    display: block;     /* Aby se choval jako blok */
+    margin: 0 auto;     /* Zarovnání na střed pod bublinou */
+}
+
+.bubble {
+    background: #ffffe0;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    font-size: 12px;
+    position: relative;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Šipka bubliny (aby to vypadalo, že mluví on) */
+.bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%); /* Vycentrování šipky */
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #ffffe0 transparent;
+    display: block;
+    width: 0;
+}
