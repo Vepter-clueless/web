@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výuka HTML</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html">Domů</a>
+            <a href="html-vyuka.html" style="color: #4CAF50;">HTML</a> <!--<a href="#">CSS</a>-->
+            <!--<a href="#">Cvičení</a>-->
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside>
+            <h3>Lekce HTML</h3>
+            <a href="#uvod">1. Úvod do HTML</a>
+            <a href="#znacky">2. Základní značky</a>
+            <a href="#obrazky">3. Obrázky</a>
+            <a href="#seznamy">4. Seznamy</a>
+        </aside>
+
+        <main>
+            <h1>Výuka HTML</h1>
+
+            <section id="uvod">
+                <h2>1. Úvod do HTML</h2>
+                <p>HTML (HyperText Markup Language) je základní stavební kámen webu. Není to programovací jazyk, ale značkovací jazyk.</p>
+                
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+&lt;h1&gt;Ahoj světe!&lt;/h1&gt;
+&lt;p&gt;Toto je můj první web.&lt;/p&gt;
+                </div>
+                
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <h1>Ahoj světe!</h1>
+                    <p>Toto je můj první web.</p>
+                </div>
+            </section>
+            
+            <hr> <section id="znacky">
+                <h2>2. Základní značky</h2>
+                <p>Text formátujeme pomocí párových značek (tagů). Tučný text děláme pomocí tagu <code>&lt;strong&gt;</code> nebo <code>&lt;b&gt;</code>.</p>
+
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+&lt;p&gt;Toto je &lt;b&gt;tučný text&lt;/b&gt; a toto je &lt;i&gt;kurzíva&lt;/i&gt;.&lt;/p&gt;
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <p>Toto je <b>tučný text</b> a toto je <i>kurzíva</i>.</p>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="obrazky">
+                <h2>3. Obrázky</h2>
+                <p>Obrázky se vkládají nepárovou značkou <code>&lt;img&gt;</code>. Musíme zadat cestu k obrázku (src) a alternativní popis (alt).</p>
+
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+&lt;img src="images.jpg" alt="Ukázkový obrázek"&gt;
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <img src="images.jpg" alt="Ukázkový obrázek">
+                </div>
+            </section>
+
+            <hr>
+
+             <section id="seznamy">
+                <h2>4. Seznamy</h2>
+                <p>Máme seznamy s odrážkami (UL) a číslované seznamy (OL). Jednotlivé položky značíme LI.</p>
+
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+&lt;ul&gt;
+  &lt;li&gt;Mléko&lt;/li&gt;
+  &lt;li&gt;Rohlíky&lt;/li&gt;
+&lt;/ul&gt;
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <ul>
+                        <li>Mléko</li>
+                        <li>Rohlíky</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
