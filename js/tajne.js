@@ -70,6 +70,7 @@ function checkCode() {
     }
 }
 
+/* --- FUNKCE PRO VÝHRU ZÁMKU (Otevře Meme část) --- */
 function gameWin() {
     gameOver = true;
     document.getElementById('message').innerText = "ACCESS GRANTED";
@@ -129,6 +130,7 @@ function startClippyJokes() {
 
 let timerInterval;
 let totalSeconds;
+let spawnSpeed = 800; // Výchozí rychlost (ms) pro Hydra efekt
 
 function triggerHack() {
     let elem = document.documentElement;
@@ -169,13 +171,11 @@ function startTimer(seconds) {
     totalSeconds = seconds;
     let el = document.getElementById('timer1'); 
     
-    // Vyčistit předchozí interval, kdyby nějaký běžel
     if (timerInterval) clearInterval(timerInterval);
 
     timerInterval = setInterval(() => {
         totalSeconds--;
         
-        // Zobrazení 00:00:00 pokud je pod nulou
         if (totalSeconds < 0) totalSeconds = 0;
 
         let h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
@@ -183,22 +183,25 @@ function startTimer(seconds) {
         let s = (totalSeconds % 60).toString().padStart(2, '0');
         el.innerText = `${h}:${m}:${s}`;
         
+        // KDYŽ ČAS VYPRŠÍ -> START PEKLA
         if (totalSeconds <= 0) {
             clearInterval(timerInterval);
-            // Čas vypršel -> Spustit Hydra peklo
+            el.innerText = "00:00:00";
             startHydraMode();
         }
     }, 1000);
 }
 
 function solveRansomware() {
+    // Tlačítko Check Payment - finále
     document.getElementById('ransomware').style.display = 'none';
     document.getElementById('finalTroll').style.display = 'block';
     document.body.style.cursor = 'default';
     clearInterval(timerInterval);
 }
 
-/* --- 4. HACKING MINI-GAME (OPRAVENO) --- */
+
+/* --- 4. HACKING MINI-GAME (S OPRAVOU ZASEKÁVÁNÍ) --- */
 let hackLevel = 1;
 let hackMarkerPos = 0;
 let hackTargetStart = 0;
@@ -235,38 +238,30 @@ function startHackLevel() {
     
     hackMarkerPos = 0;
     
-    // ZRYCHLOVÁNÍ: Level 1 = 3, Level 2 = 6, Level 3 = 10
+    // ZRYCHLOVÁNÍ
     hackSpeed = 2 + (hackLevel * 3); 
     
-    // Vyčistit předchozí interval
     if (hackInterval) clearInterval(hackInterval);
-    
-    hackInterval = setInterval(moveMarker, 15); // Plynulejší pohyb (nižší ms)
+    hackInterval = setInterval(moveMarker, 15); 
 }
 
 function moveMarker() {
     let barBg = document.querySelector('.hack-bar-bg');
-    // Musíme ověřit, že element existuje, než změříme šířku
-    if (!barBg) return; 
+    if (!barBg) return;
 
     let barWidth = barBg.offsetWidth;
-    let markerWidth = 5; // Šířka markeru podle CSS
+    let markerWidth = 5;
 
-    // Posuneme marker
     hackMarkerPos += hackSpeed * hackDirection;
     
-    // KONTROLA PRAVÉHO OKRAJE
-    // Pokud vyjel doprava (barWidth - šířka markeru)
+    // OPRAVA ZASEKÁVÁNÍ (Wall Bounce fix)
     if (hackMarkerPos >= (barWidth - markerWidth)) {
-        hackMarkerPos = barWidth - markerWidth; // Natvrdo ho vrátíme na kraj
-        hackDirection = -1; // Otočíme směr doleva
+        hackMarkerPos = barWidth - markerWidth;
+        hackDirection = -1;
     }
-    
-    // KONTROLA LEVÉHO OKRAJE
-    // Pokud vyjel doleva (pod 0)
     else if (hackMarkerPos <= 0) {
-        hackMarkerPos = 0; // Natvrdo ho vrátíme na nulu
-        hackDirection = 1; // Otočíme směr doprava
+        hackMarkerPos = 0;
+        hackDirection = 1;
     }
     
     document.getElementById('hack-marker').style.left = hackMarkerPos + 'px';
@@ -274,153 +269,179 @@ function moveMarker() {
 
 function handleSpacebar(e) {
     if (e.code === 'Space' && gameActive) {
-        e.preventDefault(); // Zastavit scrollování
-        
-        // Zastavit pohyb
+        e.preventDefault(); 
         clearInterval(hackInterval);
         
-        // Kontrola zásahu
         if (hackMarkerPos >= hackTargetStart && hackMarkerPos <= (hackTargetStart + hackTargetWidth)) {
             // ZÁSAH!
             hackLevel++;
             if (hackLevel > 3) {
-                winGame();
+                winMiniGame();
             } else {
-                // Efekt úspěchu (zelená)
                 let bg = document.querySelector('.hack-bar-bg');
                 bg.style.background = '#00aa00';
-                
                 setTimeout(() => {
                     bg.style.background = '#222';
-                    startHackLevel(); // Spustit další level
+                    startHackLevel();
                 }, 500);
             }
         } else {
-            // VEDLE!
+            // VEDLE! -> Prohra
             let bg = document.querySelector('.hack-bar-bg');
-            bg.style.background = '#aa0000'; // Červená pro efekt chyby
-            setTimeout(loseGame, 500); // Po chvilce spustit prohru
+            bg.style.background = '#aa0000'; 
+            setTimeout(loseGame, 500); 
         }
     }
 }
 
-function winGame() {
+/* ÚSPĚCH V MINI-HŘE */
+function winMiniGame() {
     gameActive = false;
     document.removeEventListener('keydown', handleSpacebar);
     document.getElementById('hack-overlay').style.display = 'none';
     
-    // DŮLEŽITÉ: Zastavit odpočet ransomwaru, aby nezačal ječet, zatímco čteš zprávu
+    // Zastavit časovač
     clearInterval(timerInterval);
 
-    // Místo alertu zobrazíme naše Windows okno úspěchu
+    // Zobrazit Windows okno úspěchu
     document.getElementById('win-success-overlay').style.display = 'flex';
 }
 
-// Tuto funkci volá tlačítko OK v okně úspěchu
+/* VSTUP ZPĚT DO TAJNÉ SEKCE (Po kliknutí OK v úspěšném okně) */
 function enterSecretArea() {
-    // 1. Schovat okno úspěchu
     document.getElementById('win-success-overlay').style.display = 'none';
-
-    // 2. Schovat CELÝ ransomware overlay (černé pozadí i wannacry)
     document.getElementById('fake-overlay').style.display = 'none';
     document.getElementById('ransomware').style.display = 'none';
-
-    // 3. Schovat původní zámek (aby tam nezacláněl)
     document.getElementById('lockScreen').style.display = 'none';
-
-    // 4. Zobrazit tajný obsah a Clippyho
+    
     document.getElementById('memeContent').style.display = 'block';
     document.getElementById('clippy').style.display = 'block';
-    
-    // Vrátit kurzor myši do normálu
     document.body.style.cursor = 'default';
-
     startClippyJokes();
 }
 
+/* PROHRA V MINI-HŘE */
 function loseGame() {
     gameActive = false;
     document.removeEventListener('keydown', handleSpacebar);
     document.getElementById('hack-overlay').style.display = 'none';
     
-    // PROHRA -> OKAMŽITÁ SMRT
-    // 1. Nastavit časovač ransomwaru na 0
+    // Časovač na nulu a START PEKLA
     totalSeconds = 0;
     document.getElementById('timer1').innerText = "00:00:00";
     clearInterval(timerInterval);
 
-    // 2. Spustit HYDRA mód (vyskakovací okna)
     startHydraMode();
 }
 
-/* --- 5. HYDRA EFEKT A BSOD --- */
+
+/* --- 5. HYDRA EFEKT A BSOD (S MAZÁNÍM SOUBORŮ) --- */
+
+// VELKÝ SEZNAM SOUBORŮ (50+)
+const funnyFiles = [
+    "Domácí úkoly 2024.docx", "Minecraft_Save_World_Survival.dat", "Hesla_Instagram_Facebook.txt",
+    "Tajný_deníček.doc", "Prezentace_Škola_FINAL_verze2.pptx", "Brawl_Stars_Login_Info.json",
+    "Složka: System32", "Windows Kernel.dll", "Bootloader.exe", "Registry_Backup.reg",
+    "Foto_z_Vánoc_trapné.jpg", "TikTok_Drafts_Backup.mp4", "Roblox_Robux_Hack.exe",
+    "Fortnite_Account_Skiny.txt", "Písemka_Matika_tahák.jpg", "Referát_Dějepis.doc",
+    "Steam_Library_Backup", "Discord_Chat_Logs.txt", "Snapchat_Memories.zip",
+    "Virus_Definition_Database", "User_Profile_Data", "Browser_History_FULL.log",
+    "Cookies_NetFlix.dat", "Spotify_Playlist_Tajný.mp3", "GTA_V_Savegame.sav",
+    "League_of_Legends_Replays", "CS2_Config.cfg", "Valorant_Skins.txt",
+    "Školní_Email_Heslo.txt", "Práce_do_Fyziky.pdf", "Chemické_tabulky.pdf",
+    "Videa_z_výletu.mp4", "Rodinné_oslavy.avi", "Dokumenty_Rodiče_Tajné.pdf",
+    "Bankovní_Výpis.pdf", "Kryptopeněženka.dat", "Bitcoin_Miner.exe",
+    "Wi-Fi_Hesla_Sousedů.txt", "Hack_Tools_Collection", "Kali_Linux_ISO",
+    "Ovladače_Grafické_Karty", "DirectX_Shaders_Cache", "Temp_Files",
+    "Koš (Recycle Bin)", "Plocha (Desktop)", "Dokumenty (Documents)",
+    "Stažené soubory (Downloads)", "Obrázky (Pictures)", "Hudba (Music)",
+    "Video (Videos)", "Hry (Games)", "Program Files"
+];
 
 function startHydraMode() {
-    // Pokud je zobrazený win-error-overlay z minula, schovat ho
+    // Schováme případné Windows Errory, ale Ransomware necháme vidět!
     document.getElementById('win-error-overlay').style.display = 'none';
     
-    // Spustit časovač do BSOD (30 sekund pekla)
+    // Zčervenání časovače
+    document.getElementById('timer1').style.color = "red";
+    document.getElementById('timer1').style.fontSize = "45px";
+    
+    // Odpočet do BSOD (30s)
     setTimeout(showBSOD, 30000); 
     
-    // Spustit první vlnu
+    // Spustit automatické vyskakování
+    autoSpawnLoop();
+}
+
+function autoSpawnLoop() {
+    if (document.getElementById('bsod').style.display === 'block') return;
+
     spawnWindow();
+    
+    // Rekurzivní volání s aktuální rychlostí
+    setTimeout(autoSpawnLoop, spawnSpeed);
 }
 
 function spawnWindow() {
+    if (document.getElementsByClassName('win-window').length > 80) return;
+
     let container = document.getElementById('hydra-container');
     let win = document.createElement('div');
     win.className = 'win-window';
     
-    let x = Math.random() * (window.innerWidth - 420);
+    let x = Math.random() * (window.innerWidth - 350);
     let y = Math.random() * (window.innerHeight - 200);
     win.style.left = x + 'px';
     win.style.top = y + 'px';
-    win.style.zIndex = 1000 + document.getElementsByClassName('win-window').length;
+    win.style.zIndex = 10000 + document.getElementsByClassName('win-window').length;
     
-    // Náhodné chybové hlášky
-    const errors = ["Deleting System32...", "Sending data to FBI...", "Encrypting drive C:", "Critical Process Died", "Trojan.Win32 detected"];
-    let randomError = errors[Math.floor(Math.random() * errors.length)];
+    let randomFile = funnyFiles[Math.floor(Math.random() * funnyFiles.length)];
 
     win.innerHTML = `
-        <div class="win-title-bar">
-            <span>System Error 0x800${Math.floor(Math.random()*999)}</span>
+        <div class="win-title-bar" style="background: #ffcccc;">
+            <span>Deleting File...</span>
             <button class="win-close-btn">✕</button>
         </div>
         <div class="win-content">
-            <div class="win-icon">❌</div>
-            <div class="win-text">Critical Error: ${randomError}</div>
+            <div class="win-icon">🗑️</div>
+            <div class="win-text">
+                <strong>Permanently deleting:</strong><br>
+                ${randomFile}<br>
+                <span style="color: red; font-size: 12px;">(Cannot be undone)</span>
+            </div>
         </div>
         <div class="win-buttons">
-            <button class="win-ok-btn">OK</button>
+            <button class="win-ok-btn">Cancel</button>
         </div>
     `;
     
+    // HYDRA EFEKT: Kliknutí na X nebo Cancel zavolá množení
     let closeBtn = win.querySelector('.win-close-btn');
-    let okBtn = win.querySelector('.win-ok-btn');
+    let cancelBtn = win.querySelector('.win-ok-btn');
     
-    // Množení oken (Hydra efekt)
-    let multiplyFunc = function() {
-        win.remove(); 
-        spawnTwoWindows(); 
-    };
-    
-    closeBtn.onclick = multiplyFunc;
-    okBtn.onclick = multiplyFunc;
+    closeBtn.onclick = function() { triggerHydraEffect(win); };
+    cancelBtn.onclick = function() { triggerHydraEffect(win); };
     
     container.appendChild(win);
 }
 
-function spawnTwoWindows() {
-    if (document.getElementsByClassName('win-window').length > 50) {
-        showBSOD();
-        return;
+function triggerHydraEffect(windowElement) {
+    // 1. Smazat zavřené okno
+    windowElement.remove();
+    
+    // 2. Zrychlit vyskakování
+    if (spawnSpeed > 100) {
+        spawnSpeed -= 50;
     }
+    
+    // 3. Otevřít DVĚ nová
     spawnWindow();
-    setTimeout(spawnWindow, 150); // Rychlejší množení
+    setTimeout(spawnWindow, 100); 
 }
 
 function showBSOD() {
-    document.getElementById('hydra-container').innerHTML = ''; // Vyčistit okna
+    document.getElementById('hydra-container').innerHTML = ''; 
+    document.getElementById('ransomware').style.display = 'none'; 
     document.getElementById('bsod').style.display = 'block';
     document.documentElement.requestFullscreen().catch(e=>{});
 }
