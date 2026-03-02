@@ -112,3 +112,154 @@ p { margin-bottom: 15px; }
     margin-bottom: 5px;
     display: block;
 }
+/* --- STYLY PRO TAJNOU STRÁNKU --- */
+
+/* Hra - číselný zámek */
+.lock-screen {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    background: #333;
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Courier New', monospace;
+}
+
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pin-digit {
+    width: 50px;
+    height: 60px;
+    font-size: 30px;
+    background: #222;
+    border: 2px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Barvy pro Wordle logiku */
+.correct { background-color: #4CAF50; border-color: #4CAF50; } /* Zelená - správné místo */
+.present { background-color: #FFA500; border-color: #FFA500; color: black; } /* Oranžová - špatné místo */
+.wrong { background-color: #555; } /* Šedá - není tam */
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.num-btn {
+    padding: 15px;
+    font-size: 20px;
+    background: #444;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.num-btn:hover { background: #666; }
+
+/* Obsah po odemčení */
+.meme-content {
+    display: none; /* Schované, dokud se neuhodne kód */
+    text-align: center;
+}
+
+.big-red-button {
+    background-color: red;
+    color: white;
+    font-size: 24px;
+    padding: 20px 40px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* FALEŠNÝ VIRUS / RANSOMWARE */
+#fake-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 9999;
+    color: lime;
+    font-family: monospace;
+    overflow: hidden;
+}
+
+.ransomware-screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: url('ransomware.jpg') no-repeat center center;
+    background-size: cover; /* Aby to bylo přes celou obrazovku */
+    position: relative;
+}
+
+.pay-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background: #f39c12;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.final-troll {
+    display: none;
+    background: white;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 50px;
+}
+/* HISTORIE POKUSŮ (Wordle styl) */
+.history-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    max-height: 200px;
+    overflow-y: auto; /* Kdyby toho bylo moc, půjde rolovat */
+}
+
+.history-row {
+    display: flex;
+    gap: 5px;
+}
+
+.history-digit {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    border: 1px solid #555;
+}
+
+/* Třídy barev už máme (correct, present, wrong), použijeme je znovu */

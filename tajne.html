@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM ERROR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #111; color: #ddd;">
+
+    <div class="lock-screen" id="lockScreen">
+        <h2>🔒 TOP SECRET ACCESS</h2>
+        <p>Uhádni 4místný kód. <br>Zelená = správně, Oranžová = špatné místo.</p>
+        <p>Zbývá pokusů: <span id="attemptsLeft" style="color: red; font-weight: bold;">10</span></p>
+        
+        <div class="pin-display">
+            <div class="pin-digit" id="d0"></div>
+            <div class="pin-digit" id="d1"></div>
+            <div class="pin-digit" id="d2"></div>
+            <div class="pin-digit" id="d3"></div>
+        </div>
+
+        <div class="numpad">
+            <button class="num-btn" onclick="addNum(1)">1</button>
+            <button class="num-btn" onclick="addNum(2)">2</button>
+            <button class="num-btn" onclick="addNum(3)">3</button>
+            <button class="num-btn" onclick="addNum(4)">4</button>
+            <button class="num-btn" onclick="addNum(5)">5</button>
+            <button class="num-btn" onclick="addNum(6)">6</button>
+            <button class="num-btn" onclick="addNum(7)">7</button>
+            <button class="num-btn" onclick="addNum(8)">8</button>
+            <button class="num-btn" onclick="addNum(9)">9</button>
+            <button class="num-btn" onclick="clearInput()">C</button>
+            <button class="num-btn" onclick="addNum(0)">0</button>
+            <button class="num-btn" style="background: #27ae60;" onclick="checkCode()">ENTER</button>
+        </div>
+        
+        <p id="message" style="margin-top: 10px; height: 20px;"></p>
+
+        <div class="history-container" id="historyLog">
+            </div>
+    </div>
+
+    <div class="meme-content container" id="memeContent">
+        <h1>Vítej v podsvětí internetu 🕵️‍♂️</h1>
+        
+        <div style="margin: 30px;">
+            <h3>Stahování RAM zdarma...</h3>
+            <progress value="0" max="100" id="ramProgress" style="width: 100%;"></progress>
+            <p id="ramText">Čekám na spuštění...</p>
+            <button onclick="downloadRam()">Stáhnout 16GB RAM</button>
+        </div>
+
+        <hr>
+
+        <div style="margin: 50px;">
+            <h2>⚠️ NEBEZPEČNÁ ZÓNA ⚠️</h2>
+            <p>Tohle tlačítko nikdy nemačkej. Vážně.</p>
+            <button class="big-red-button" onclick="triggerHack()">NEKLIKAT!</button>
+        </div>
+    </div>
+
+    <div id="fake-overlay">
+        <audio id="scarySound" src="faah.mp3"></audio>
+        <div id="terminal" style="padding: 20px;"></div>
+        
+        <div class="ransomware-screen" id="ransomware">
+            <button class="pay-btn" onclick="solveRansomware()">💸 ZAPLATIT 10 BTC 💸</button>
+        </div>
+
+        <div class="final-troll" id="finalTroll">
+            <h1>Transakce přijata!</h1>
+            <img src="kocka.jpg" alt="Smějící se kočka" style="max-width: 300px;">
+            <h2>Doporučujeme změnu zaměstnání:</h2>
+            <img src="job.jpg" alt="Job Application" style="width: 80%; border: 1px solid black; margin-top: 20px;">
+            <br><br>
+            <button onclick="location.reload()">Resetovat hru</button>
+        </div>
+    </div>
+
+    <script>
+        // --- NASTAVENÍ HRY ---
+        let SECRET_CODE = [];
+        let currentGuess = [];
+        let attempts = 10;
+        let gameOver = false;
+
+        // 1. Vygeneruje náhodný kód při startu (např. [4, 0, 9, 2])
+        function generateSecretCode() {
+            SECRET_CODE = [];
+            for(let i=0; i<4; i++) {
+                SECRET_CODE.push(Math.floor(Math.random() * 10));
+            }
+            // Tajná nápověda do konzole pro učitele (F12)
+            console.log("🤫 Pssst! Kód je:", SECRET_CODE.join(''));
+        }
+        
+        // Spustíme hned
+        generateSecretCode();
+
+        // Přidání čísla do displeje
+        function addNum(num) {
+            if (currentGuess.length < 4 && !gameOver) {
+                currentGuess.push(num);
+                updateDisplay();
+            }
+        }
+
+        // Vymazání displeje (tlačítko C)
+        function clearInput() {
+            if(!gameOver) {
+                currentGuess = [];
+                updateDisplay();
+                document.getElementById('message').innerText = "";
+            }
+        }
+
+        // Aktualizace velkých čísel nahoře
+        function updateDisplay() {
+            for (let i = 0; i < 4; i++) {
+                let el = document.getElementById('d' + i);
+                if (currentGuess[i] !== undefined) {
+                    el.innerText = currentGuess[i];
+                } else {
+                    el.innerText = "";
+                }
+            }
+        }
+
+        // --- HLAVNÍ LOGIKA (WORDLE) ---
+        function checkCode() {
+            if (currentGuess.length !== 4 || gameOver) return;
+
+            attempts--;
+            document.getElementById('attemptsLeft').innerText = attempts;
+
+            // 1. Zkontrolujeme výhru
+            let correctCount = 0;
+            // Vytvoříme HTML pro řádek historie
+            let historyHTML = '<div class="history-row">';
+
+            for (let i = 0; i < 4; i++) {
+                let num = currentGuess[i];
+                let colorClass = "wrong"; // Výchozí šedá
+
+                if (num === SECRET_CODE[i]) {
+                    colorClass = "correct"; // Zelená (přesně)
+                    correctCount++;
+                } else if (SECRET_CODE.includes(num)) {
+                    colorClass = "present"; // Oranžová (je tam, ale jinde)
+                }
+
+                // Přidáme kostičku do historie
+                historyHTML += `<div class="history-digit ${colorClass}">${num}</div>`;
+            }
+            historyHTML += '</div>';
+
+            // 2. Vložíme řádek do historie (na začátek, aby byl nahoře)
+            let historyContainer = document.getElementById('historyLog');
+            historyContainer.innerHTML = historyHTML + historyContainer.innerHTML;
+
+            // 3. Vyhodnocení
+            if (correctCount === 4) {
+                gameWin();
+            } else if (attempts <= 0) {
+                gameLoss();
+            } else {
+                // Hra pokračuje - vyčistíme zadání pro další pokus
+                currentGuess = [];
+                updateDisplay();
+                document.getElementById('message').innerText = "Zkus to znovu!";
+            }
+        }
+
+        function gameWin() {
+            gameOver = true;
+            document.getElementById('message').innerText = "PŘÍSTUP POVOLEN!";
+            document.getElementById('message').style.color = "lime";
+            // Efekt odemčení
+            setTimeout(() => {
+                document.getElementById('lockScreen').style.display = 'none';
+                document.getElementById('memeContent').style.display = 'block';
+            }, 1000);
+        }
+
+        function gameLoss() {
+            gameOver = true;
+            document.getElementById('message').innerText = "ACCESS DENIED.";
+            document.getElementById('message').style.color = "red";
+            setTimeout(() => {
+                // Rickroll
+                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
+            }, 1500);
+        }
+
+        // --- ZBYTEK FUNKCÍ (RAM, VIRUS) ---
+        function downloadRam() {
+            let progress = document.getElementById('ramProgress');
+            let text = document.getElementById('ramText');
+            let val = 0;
+            let interval = setInterval(() => {
+                val += Math.random() * 5;
+                progress.value = val;
+                if (val >= 100) {
+                    clearInterval(interval);
+                    text.innerText = "Chyba: RAM se nevešla do počítače. Stáhni si nejdřív větší disk.";
+                }
+            }, 100);
+        }
+
+        function triggerHack() {
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) elem.requestFullscreen();
+
+            document.getElementById('fake-overlay').style.display = 'block';
+            let terminal = document.getElementById('terminal');
+            let logs = "";
+            let counter = 0;
+
+            let matrixInterval = setInterval(() => {
+                logs += "HACKING SECTOR " + Math.floor(Math.random() * 9999) + "<br>";
+                terminal.innerHTML = logs;
+                counter++;
+                if (counter > 20) {
+                    clearInterval(matrixInterval);
+                    terminal.style.display = 'none';
+                    showRansomware();
+                }
+            }, 100);
+        }
+
+        function showRansomware() {
+            document.getElementById('ransomware').style.display = 'block';
+            document.getElementById('scarySound').play().catch(e => console.log("Audio needs interaction"));
+            document.body.style.cursor = 'none';
+        }
+
+        function solveRansomware() {
+            document.getElementById('ransomware').style.display = 'none';
+            document.getElementById('finalTroll').style.display = 'block';
+            document.body.style.cursor = 'default';
+        }
+    </script>
+
+</body>
+</html>
