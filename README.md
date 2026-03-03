@@ -4,4 +4,4 @@ Tento projekt slouží primárně jako vzdělávací webová platforma pro výuk
 
 Projekt je ale navržen tak, aby žáky motivoval a bavil – proto **obsahuje masivní, skrytý "Easter Egg"**
 
-Podívejte se na náš [hlavní výukový web](https://vepter-clueless.github.io/web/html/).
+Podívejte se na [hlavní výukový web](https://vepter-clueless.github.io/web/html/).
