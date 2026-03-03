@@ -114,7 +114,7 @@
                 <div style="display: flex; gap: 10px; align-items: center; width: 100%;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png" width="50">
                     <div style="flex:1;">
-                        <label>Send $300 worth of bitcoin to this address:</label>
+                       <label>Send <span id="ransom-price">$300</span> worth of bitcoin to this address:</label>
                         <input type="text" class="wc-input" value="1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2" readonly>
                     </div>
                     <button class="pay-btn" onclick="solveRansomware()">CHECK PAYMENT</button>
@@ -164,26 +164,42 @@
             </div>
         </div>
     </div>
-    <div id="win-success-overlay" style="display: none;">
-    <div class="win-window">
-        <div class="win-title-bar">
-            <span>System Decryption</span>
-            <button class="win-close-btn" onclick="enterSecretArea()">✕</button>
-        </div>
-        <div class="win-content">
-            <div class="win-icon" style="color: #0078d4;">ℹ️</div>
-            <div class="win-text">
-                <strong>Access Granted.</strong><br>
-                Šifrování prolomeno.<br>
-                Vítejte zpět, Admine.
+    <div id="win-success-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 30000; align-items: center; justify-content: center;">
+        <div class="win-window" style="border: 2px solid #0078d4;">
+            <div class="win-title-bar">
+                <span>System Decryption</span>
+                <button class="win-close-btn" onclick="enterSecretArea()">✕</button>
+            </div>
+            <div class="win-content">
+                <div class="win-icon" style="color: #0078d4;">ℹ️</div>
+                <div class="win-text">
+                    <strong>Access Granted.</strong><br>
+                    Šifrování prolomeno.<br>
+                    Vítejte zpět, Admine.
+                </div>
+            </div>
+            <div class="win-buttons">
+                <button class="win-ok-btn" onclick="enterSecretArea()">OK</button>
             </div>
         </div>
-        <div class="win-buttons">
-            <button class="win-ok-btn" onclick="enterSecretArea()">OK</button>
+    </div>
+
+    <div id="win-fail-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 30000; align-items: center; justify-content: center;">
+        <div class="win-window" style="border: 2px solid red;">
+            <div class="win-title-bar" style="background: #ffcccc;">
+                <span>Decryption Failed</span>
+                <button class="win-close-btn" onclick="closeFailWindow()">✕</button>
+            </div>
+            <div class="win-content">
+                <div class="win-icon">❌</div>
+                <div class="win-text" id="fail-message-text">
+                    </div>
+            </div>
+            <div class="win-buttons">
+                <button class="win-ok-btn" style="background: #d00;" onclick="closeFailWindow()">OK</button>
+            </div>
         </div>
     </div>
-</div>
-
     <div id="hydra-container"></div>
 
     <div id="bsod">

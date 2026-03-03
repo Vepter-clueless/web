@@ -338,15 +338,15 @@ body {
 }
 /* Obecný styl pro všechna Windows okna (i ta množená) */
 .win-window {
+    position: absolute; /* Nutné pro náhodné pozice */
     background: #f0f0f0;
     width: 400px;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    font-family: 'Segoe UI', sans-serif;
-    color: black;
-    overflow: hidden;
     border: 1px solid #ccc;
-    position: absolute; /* Důležité pro Hydra efekt */
+    overflow: hidden;
+    color: black;
+    font-family: 'Segoe UI', sans-serif;
     animation: popIn 0.2s ease-out;
 }
 .win-title-bar {
