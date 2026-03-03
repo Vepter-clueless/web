@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Application - Loser Edition</title>
+    <link rel="stylesheet" href="/web/styles/job.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h1 style="color: #a00;">Employment / Job Application</h1>
+        <div class="warning">POZOR: Vzhledem k vaší zjevné neschopnosti ochránit svá data doporučujeme nevyplňovat tento formulář na nezabezpečeném připojení.</div>
+
+        <form id="jobForm" onsubmit="return denyApplication(event)">
+            
+            <div class="section-header">Osobní info (To málo, co vám zbylo)</div>
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label>Celé jméno:</label>
+                    <input type="text" placeholder="Sean John Combs" required>
+                </div>
+                <div class="form-group">
+                    <label>Datum:</label>
+                    <input type="date" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Adresa (Kde budete bydlet po exekuci počítače):</label>
+                    <input type="text" placeholder="192.168.1.196" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>E-Mail (Pokud se do něj ještě dostanete):</label>
+                    <input type="email" placeholder="hacker-mi-vzal-ucet@sadge.sk" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon (Pro vymahače dluhů):</label>
+                    <input type="phone" placeholder="+420 666 670 069">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Požadovaný plat:</label>
+                    <input type="text" value="Feet pics a půlka cheese" readonly style="color: red; font-weight: bold;">
+                </div>
+                <div class="form-group">
+                    <label>Pozice:</label>
+                    <input type="text" value="Discord mod" readonly style="color: red; font-weight: bold;">
+                </div>
+            </div>
+
+            <div class="section-header">Vzdělání a zkušenosti</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Vzdělání:</label>
+                    <input type="text" placeholder="Škola života..." required>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox-column-group" style="margin-bottom: 0;">
+                        <div class="question-label">Víte jak se chovat na internetu?</div>
+                        <label><input type="radio" name="grad" required> Ano, ale ztratil jsem pozornost</label>
+                        <label><input type="radio" name="grad"> Ne, školní síť padla s tímto počítačem</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Předchozí zaměstnavatel:</label>
+                    <input type="text" placeholder="Kdo vás vůbec zaměstnal?">
+                </div>
+                <div class="form-group">
+                    <label>Důvod propuštění:</label>
+                    <input type="text" value="Jsem chodící bezpečnostní riziko." readonly style="color: #666;">
+                </div>
+            </div>
+
+            <div class="section-header">Znalost IT a copingové mechanismy</div>
+            
+            <div class="checkbox-column-group">
+                <div class="question-label">Umíte ignorovat varování antiviru a klikat na blikající nápisy "Vyhrál jsi iPhone"?</div>
+                <label><input type="checkbox" name="links1" required> Jasně, jsem profík</label>
+                <label><input type="checkbox" name="links2"> Jen když mi slíbí Robuxy zdarma</label>
+                <label><input type="checkbox" name="links3"> Ne, radši klikám na reklamy s "Stáhnout RAM zdarma"</label>
+                <label><input type="checkbox" name="links4" disabled> Ne</label>
+            </div>
+            
+            <div class="checkbox-column-group">
+                <div class="question-label">Při pohledu na smazaný disk obvykle:</div>
+                <label><input type="checkbox" name="coping1" required> Brečím v poloze plodu</label>
+                <label><input type="checkbox" name="coping2"> Obviňuji ostatní</label>
+                <label><input type="checkbox" name="coping3"> Fixnu to kladivem</label>
+            </div>
+
+            <div class="edgy-checkbox">
+                <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" required style="margin-top: 2px;">
+                    <span style="font-weight: normal;">Souhlasím s tím, že moje data jsou teď majetkem severokorejské farmy na bitcoiny, jsem ochoten prodat svou ledvinu na splacení dluhů a slibuji, že už nikdy nekliknu na tlačítko "Stáhnout RAM zdarma".</span>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">ODESLAT ŽÁDOST DO SPAMU</button>
+        </form>
+    </div>
+
+    <div id="win-fail-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 30000; align-items: center; justify-content: center;">
+        <div class="win-window" style="background: #111; width: 500px; border-radius: 0; border: 2px solid red; font-family: 'Courier New', monospace; color: white;">
+            <div class="win-title-bar" style="background: red; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; color: white; font-weight: bold;">
+                <span>FATAL_ERROR // APPLICATION_REJECTED</span>
+                <button class="win-close-btn" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;" onclick="executeRickroll()">✕</button>
+            </div>
+            <div class="win-content" style="padding: 30px; display: flex; gap: 20px; align-items: center;">
+                <div class="win-icon" style="font-size: 50px;">💀</div>
+                <div class="win-text" style="font-size: 14px; line-height: 1.6; color: #ccc;">
+                    <strong style="color: red; font-size: 18px;">ŽÁDOST DEFINITIVNĚ ZAMÍTNUTA!</strong><br><br>
+                    Bohužel, vaše žádost o zaměstnání byla zamítnuta z důvodu zjevné neschopnosti ochránit svá data a neustálého klikaní na podezřelé odkazy. Doporučujeme vám zvážit kariéru v oblasti sběru odpadků nebo jako profesionální trol na internetu. <br><br>
+                    Pro více informací o tom, jak se stát lepším uživatelem internetu, navštivte <a href="https://necyklopedie.org/wiki/Internet#Jak_surfovat_po_internetu" style="color: red; text-decoration: underline;" target="_blank">tuto stránku</a> (pokud se ještě dostanete).
+                </div>
+            </div>
+            <div class="win-buttons" style="background: #222; padding: 15px; text-align: right; border-top: 1px solid #444;">
+                <button class="win-ok-btn" style="background: red; color: white; border: none; padding: 10px 30px; cursor: pointer; font-weight: bold; font-family: inherit;" onclick="executeRickroll()">ACCEPT DEFEAT</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function denyApplication(event) {
+            event.preventDefault();
+            document.getElementById('win-fail-overlay').style.display = 'flex';
+        }
+
+        function executeRickroll() {
+            document.getElementById('win-fail-overlay').style.display = 'none';
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+    </script>
+</body>
+</html>

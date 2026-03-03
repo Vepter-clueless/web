@@ -218,10 +218,31 @@ function formatTime(seconds) {
 }
 
 function solveRansomware() {
-    document.getElementById('ransomware').style.display = 'none';
+   document.getElementById('ransomware').style.display = 'none';
     document.getElementById('finalTroll').style.display = 'block';
     document.body.style.cursor = 'default';
-    clearInterval(timerInterval);
+    clearInterval(timerInterval); // Zastavit odpočet
+
+    // 2. Přehrát zvuk smíchu
+    let laugh = document.getElementById('laughSound');
+    if (laugh) laugh.play().catch(e => console.log("Audio zablokováno prohlížečem"));
+
+    // 3. Spustit 5sekundový odpočet a pak přesměrovat na novou stránku
+    let countdown = 5;
+    let redirectText = document.getElementById('redirectText');
+
+    let redirectInterval = setInterval(() => {
+        countdown--;
+        if (redirectText) {
+            redirectText.innerText = `Připravuji tvou novou kariéru... ${countdown}`;
+        }
+
+        if (countdown <= 0) {
+            clearInterval(redirectInterval);
+            // PŘESMĚROVÁNÍ NA NOVOU STRÁNKU:
+            window.location.href = "/web/html/job.html"; 
+        }
+    }, 1000);
 }
 
 
