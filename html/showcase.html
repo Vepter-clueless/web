@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stejné HTML, jiný styl</title>
+    <link id="theme-stylesheet" rel="stylesheet" href="/web/styles/1.css">
+</head>
+<body>
+
+    <header>
+        <h1>Vítejte na mé úžasné stránce</h1>
+        <p>Použijte menu k výběru různých CSS stylů a sledujte tu změnu.</p>
+    </header>
+
+    <div class="wrapper">
+        <nav class="sidebar">
+            <h3>Menu stylů</h3>
+            <button onclick="changeStyle('1.css')">Styl 1 (Moderní)</button>
+            <button onclick="changeStyle('2.css')">Styl 2 (Hacker)</button>
+            <button onclick="changeStyle('3.css')">Styl 3 (Retro 90s)</button>
+            <button onclick="changeStyle('4.css')">Styl 4 (Cyberpunk)</button>
+            <button onclick="changeStyle('5.css')">Styl 5 (Minecraft)</button>
+            <button onclick="changeStyle('')">Styl 6 (Vypnout styly)</button>
+            <br><br>
+            <a href="style.html" class="back-link">⬅ Zpět na výuku</a>
+        </nav>
+
+        <main class="content">
+            <h2>Jedna stránka, mnoho tváří</h2>
+            
+            <img src="/web/img/showcase.jpg" alt="Vzdělávací sova" class="showcase-img">
+
+            <p>Toto je důkaz toho, jak obrovskou moc má CSS. Klikáním na tlačítka vlevo měníš pouze <strong>připojený CSS soubor</strong>. Samotný HTML kód této stránky se ani trochu nezměnil!</p>
+            
+            <h3>Co všechno se dá změnit?</h3>
+            <p>Úplně všechno. Barvy, fonty, tloušťka čar, a hlavně <strong>rozložení prvků</strong> na stránce (layout).</p>
+            
+            <ul>
+                <li>U Stylu 1 je menu nalevo a obrázek je kulatý.</li>
+                <li>U Stylu 3 to vypadá jako web z roku 1998 a obrázek má ošklivý rámeček.</li>
+                <li>U Stylu 4 je menu pro změnu napravo a obrázek glitchuje!</li>
+            </ul>
+        </main>
+    </div>
+
+    <script>
+        function changeStyle(stylesheet) {
+            document.getElementById('theme-stylesheet').href = stylesheet;
+        }
+    </script>
+</body>
+</html>
