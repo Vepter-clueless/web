@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výuka CSS</title>
+    <link rel="stylesheet" href="/web/styles/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html">Domů</a>
+            <a href="html-vyuka.html">HTML</a>
+            <a href="style.html" style="color: #4CAF50;">CSS</a>
+            </nav>
+    </header>
+
+    <div class="container">
+        <aside>
+            <h3>Lekce CSS</h3>
+            <a href="#co-je-css">0. Co je to CSS?</a>
+            <a href="#selektory">1. Třídy a ID</a>
+            <a href="#barvy">2. Barvy a pozadí</a>
+            <a href="#pismo">3. Písmo a text</a>
+            <a href="#box-model">4. Box model (Okraje)</a>
+            <a href="#hover">5. Hover efekty</a>
+        </aside>
+
+        <main>
+            <h1>Výuka CSS (Kaskádové styly)</h1>
+            
+            <section id="co-je-css">
+                <h2>0. Co je to CSS?</h2>
+                <p>Zatímco HTML je <strong>kostra</strong> (říká, <em>co</em> na stránce je), CSS je <strong>oblečení</strong> (říká, <em>jak</em> to vypadá). Bez CSS by všechny weby vypadaly jako z roku 1995.</p>
+
+                <div class="code-box">
+&lt;!-- V HTML propojíme CSS pomocí tohoto tagu v hlavičce --&gt;<br>
+&lt;link rel="stylesheet" href="style.css"&gt;
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="selektory">
+                <h2>1. Selektory (Jak vybrat to, co chci obarvit)</h2>
+                <p>Abychom v CSS mohli něčemu změnit barvu, musíme to nejdřív vybrat. Nejčastěji používáme <strong>Třídy (Classes)</strong>. Třída začíná tečkou (<code>.</code>).</p>
+
+                <span class="label">Příklad kódu (CSS):</span>
+                <div class="code-box">
+.vip-hrac {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;color: gold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+}
+                </div>
+                
+                <span class="label">Příklad kódu (HTML):</span>
+                <div class="code-box">
+&lt;p class="vip-hrac"&gt;Tento hráč má zakoupený VIP pass.&lt;/p&gt;
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <p style="color: gold; font-weight: bold; background: #222; padding: 10px; display: inline-block; text-shadow: 1px 1px 2px black;">Tento hráč má zakoupený VIP pass.</p>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="barvy">
+                <h2>2. Barvy a pozadí</h2>
+                <p>Barvy můžeme psát anglicky (např. <code>red</code>, <code>blue</code>) nebo přesně pomocí <strong>HEX kódů</strong> (např. <code>#ff0000</code>). Pozadí měníme pomocí <code>background-color</code>.</p>
+
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+.chybova-hlaska {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #ffcccc;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;color: #cc0000;<br>
+}
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <div style="background-color: #ffcccc; color: #cc0000; padding: 15px; border-left: 5px solid #cc0000; font-family: monospace;">
+                        <strong>ERROR 404:</strong> Mozek nenalezen. Zkuste kávu.
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="pismo">
+                <h2>3. Písmo a text</h2>
+                <p>Pro změnu písma používáme <code>font-family</code>. Velikost měníme pomocí <code>font-size</code> (často v pixelech - <code>px</code>).</p>
+
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+.minecraft-text {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;font-family: 'Courier New', monospace;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;font-size: 24px;<br>
+}
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <p style="font-family: 'Courier New', monospace; font-size: 24px; color: #333;">&gt; Steve joined the game.</p>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="box-model">
+                <h2>4. Box model (Margin a Padding)</h2>
+                <p>Každý prvek na webu je vlastně neviditelná krabice. <strong>Padding</strong> je vycpávka <em>uvnitř</em> krabice. <strong>Margin</strong> je mezera <em>venku</em> kolem krabice. <strong>Border</strong> je rámeček.</p>
+                
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+.krabice {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;&nbsp;&nbsp;/* Vnitřní prostor */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;margin: 10px;&nbsp;&nbsp;&nbsp;/* Mezera zvenku */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border: 3px solid blue; /* Modrý rámeček */<br>
+}
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box">
+                    <div style="padding: 20px; margin: 10px; border: 3px dashed blue; background: #e6f2ff; text-align: center;">
+                        Jsem krabice. Mám kolem sebe vnitřní vycpávku (padding), takže text není nalepený na modré čáře.
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="hover">
+                <h2>5. Hover efekty (Interakce myši)</h2>
+                <p>CSS umí reagovat na to, když uživatel najede myší na prvek. Používáme k tomu tzv. pseudo-třídu <code>:hover</code>. A pokud přidáme <code>transition</code>, změna bude plynulá!</p>
+
+                <span class="label">Příklad kódu:</span>
+                <div class="code-box">
+.herni-tlacitko {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #5865F2; /* Discord modrá */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;color: white;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding: 15px 30px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transition: 0.3s; /* Plynulá změna za 0.3 sekundy */<br>
+}<br>
+<br>
+.herni-tlacitko:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #3ba55d; /* Zelená při najetí */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: scale(1.1); /* Zvětšení o 10% */<br>
+}
+                </div>
+
+                <span class="label">Výsledek v prohlížeči:</span>
+                <div class="result-box" style="text-align: center; padding: 40px;">
+                    <button class="herni-tlacitko">PŘIPOJIT SE K SERVERU</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
