@@ -16,11 +16,11 @@
     <div class="wrapper">
         <nav class="sidebar">
             <h3>Menu stylů</h3>
-            <button onclick="changeStyle('1.css')">Styl 1 (Moderní)</button>
-            <button onclick="changeStyle('2.css')">Styl 2 (Hacker)</button>
-            <button onclick="changeStyle('3.css')">Styl 3 (Retro 90s)</button>
-            <button onclick="changeStyle('4.css')">Styl 4 (Cyberpunk)</button>
-            <button onclick="changeStyle('5.css')">Styl 5 (Minecraft)</button>
+            <button onclick="changeStyle('/web/styles/1.css')">Styl 1 (Moderní)</button>
+            <button onclick="changeStyle('/web/styles/2.css')">Styl 2 (Hacker)</button>
+            <button onclick="changeStyle('/web/styles/3.css')">Styl 3 (Retro 90s)</button>
+            <button onclick="changeStyle('/web/styles/4.css')">Styl 4 (Cyberpunk)</button>
+            <button onclick="changeStyle('/web/styles/5.css')">Styl 5 (Minecraft)</button>
             <button onclick="changeStyle('')">Styl 6 (Vypnout styly)</button>
             <br><br>
             <a href="style.html" class="back-link">⬅ Zpět na výuku</a>
@@ -29,7 +29,7 @@
         <main class="content">
             <h2>Jedna stránka, mnoho tváří</h2>
             
-            <img src="/web/img/showcase.jpg" alt="Vzdělávací sova" class="showcase-img">
+            <img src="/web/img/showcase.jpg" alt="Oil" class="showcase-img">
 
             <p>Toto je důkaz toho, jak obrovskou moc má CSS. Klikáním na tlačítka vlevo měníš pouze <strong>připojený CSS soubor</strong>. Samotný HTML kód této stránky se ani trochu nezměnil!</p>
             
@@ -45,6 +45,7 @@
     </div>
 
     <script>
+        // Funkce vezme celou cestu (např. '/web/styles/2.css') a nahradí s ní současný styl
         function changeStyle(stylesheet) {
             document.getElementById('theme-stylesheet').href = stylesheet;
         }
