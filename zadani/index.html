@@ -24,11 +24,24 @@
     </ul>
 
     <h2>Ukázka ze hry</h2>
-    <audio autoplay>
+    
+    <audio id="kcd-hudba" loop>
         <source src="/web/sound/KCD2.mp3" type="audio/mpeg">
-        Váš prohlížeč nepodporuje přehrávání zvuku.
     </audio>
-    <a href="https://www.youtube.com/watch?v=W7_uNaTRhMI" target="_blank"><img src="/web/img/jindra.jpg" alt="Jindřich ze Skalice v brnění" width="400"></a>
+
+    <a href="https://www.youtube.com/watch?v=W7_uNaTRhMI" target="_blank">
+        <img src="/web/img/jindra.jpg" alt="Jindřich ze Skalice v brnění" width="400">
+    </a>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            let hudba = document.getElementById('kcd-hudba');
+            // Zkusí přehrát hudbu (pokud už nehraje)
+            if (hudba.paused) {
+                hudba.play();
+            }
+        }, { once: true }); // { once: true } znamená, že po prvním kliknutí už to dál nehlídá
+    </script>
 
     <h2>Typy zbraní, které může Jindra použít</h2>
     <table border="1">
