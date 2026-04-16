@@ -1,0 +1,23 @@
+body { font-family: 'Courier New', monospace; margin: 0; background: #8B4513; color: white; font-weight: bold;}
+header { background: #228B22; padding: 20px; text-align: center; border-bottom: 10px solid #556B2F; color: white; text-shadow: 2px 2px 0 #000; }
+.wrapper { display: flex; max-width: 900px; margin: 20px auto; background: #A0522D; padding: 20px; border: 4px solid #3e1f08; }
+.sidebar { width: 250px; display: flex; flex-direction: column; gap: 10px; margin-right: 20px; }
+.sidebar button { padding: 15px; border: 4px solid #000; border-color: #fff #555 #555 #fff; background: #8b8b8b; color: white; cursor: pointer; font-family: inherit; font-size: 16px; text-shadow: 1px 1px 0 #000; }
+.sidebar button:hover { background: #a0a0a0; }
+.content { flex: 1; background: #c6c6c6; color: black; padding: 20px; border: 4px solid #000; border-color: #555 #fff #fff #555; }
+h2, h3 { color: #333; text-shadow: 1px 1px 0 #fff; }
+
+/* STYL PRO OBRÁZEK: Kostičkovaný pixel art */
+.showcase-img {
+    width: 120px;
+    height: 120px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border: 8px solid black;
+    /* Nutí prohlížeč obrázek vyhladit "ostře", aby vypadal pixelovatě */
+    image-rendering: pixelated; 
+    image-rendering: crisp-edges;
+}
+
+.back-link { color: #ffff00; background: #555; padding: 5px; display: inline-block; border: 2px solid #222;}

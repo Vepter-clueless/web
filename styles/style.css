@@ -30,12 +30,12 @@ nav a {
 }
 
 nav a:hover {
-    color: #4CAF50; /* Zelená při najetí myší - inspirace W3Schools */
+    color: #4CAF50; /* Zelená při najetí myší */
 }
 
 /* HLAVNÍ ROZVRŽENÍ (Flexbox) */
 .container {
-    display: flex; /* Toto dá sidebar a obsah vedle sebe */
+    display: flex;
     max-width: 1200px;
     margin: 20px auto;
     background-color: white;
@@ -45,11 +45,11 @@ nav a:hover {
 
 /* LEVÝ POSTRANNÍ PANEL (SIDEBAR) */
 aside {
-    width: 200px;
+    width: 250px;
     background-color: #f8f9fa;
     border-right: 1px solid #ddd;
     padding: 20px;
-    flex-shrink: 0; /* Sidebar se nebude zmenšovat */
+    flex-shrink: 0;
 }
 
 aside h3 {
@@ -73,15 +73,17 @@ aside a:hover {
 
 /* HLAVNÍ OBSAH */
 main {
-    flex-grow: 1; /* Zabere zbytek místa */
+    flex-grow: 1; 
     padding: 40px;
+    overflow-x: hidden;
 }
 
 h1 { margin-bottom: 20px; color: #2c3e50; }
 h2 { margin-top: 30px; margin-bottom: 10px; color: #444; }
 p { margin-bottom: 15px; }
+hr { margin: 40px 0; border: 0; border-top: 1px solid #eee; }
 
-/* VÝUKOVÉ BOXY */
+/* --- VÝUKOVÉ BOXY --- */
 
 /* 1. Tmavý box s kódem */
 .code-box {
@@ -89,9 +91,11 @@ p { margin-bottom: 15px; }
     color: #d4d4d4; /* Světlý text */
     padding: 15px;
     border-left: 5px solid #4CAF50;
-    font-family: 'Consolas', 'Monaco', monospace; /* Monospace font */
+    font-family: 'Consolas', 'Courier New', monospace;
     margin-bottom: 0;
     border-radius: 5px 5px 0 0;
+    overflow-x: auto;
+    line-height: 1.5;
 }
 
 /* 2. Světlý box s výsledkem */
@@ -102,7 +106,7 @@ p { margin-bottom: 15px; }
     padding: 20px;
     margin-bottom: 30px;
     border-radius: 0 0 5px 5px;
-    box-shadow: inset 0 0 10px #f0f0f0;
+    box-shadow: inset 0 0 10px #f9f9f9;
 }
 
 .label {
@@ -111,4 +115,26 @@ p { margin-bottom: 15px; }
     text-transform: uppercase;
     margin-bottom: 5px;
     display: block;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* --- TŘÍDY PRO UKÁZKU Z VÝUKY CSS (style.html) --- */
+
+.herni-tlacitko {
+    background-color: #5865F2; /* Discord modrá */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s; /* Plynulá změna */
+}
+
+.herni-tlacitko:hover {
+    background-color: #3ba55d; /* Zelená při najetí */
+    transform: scale(1.1); /* Zvětšení o 10% */
+    box-shadow: 0 10px 20px rgba(59, 165, 93, 0.4);
 }
