@@ -14,8 +14,8 @@
         <nav>
             <a href="index.html">Domů</a>
             <a href="html-vyuka.html">HTML</a>
-            <a href="style.html" style="color: #4CAF50;">CSS</a>
-            </nav>
+            <a href="css-vyuka.html" style="color: #4CAF50;">CSS</a>
+        </nav>
     </header>
 
     <div class="container">
@@ -27,6 +27,7 @@
             <a href="#pismo">3. Písmo a text</a>
             <a href="#box-model">4. Box model (Okraje)</a>
             <a href="#hover">5. Hover efekty</a>
+            <a href="#prvni-css">6. CSS na html_zaklad.html</a>
         </aside>
 
         <main>
@@ -163,6 +164,47 @@
                 <div class="result-box" style="text-align: center; padding: 40px;">
                     <button class="herni-tlacitko">PŘIPOJIT SE K SERVERU</button>
                 </div>
+            </section>
+            <hr>
+            <section id="prvni-css">
+                <h2>6. První CSS na html_zaklad.html</h2>
+                <p>Teď si CSS vyzkoušíte na stránce <a href="html_zaklad.html">html_zaklad.html</a>. Ta už má připravené třídy, takže můžete rovnou barvit nadpis, odkazy, seznam, obrázek i tabulku.</p>
+
+                <p>Do souboru <strong>styles/9-trida.css</strong> přidejte nebo upravte tyhle selektory:</p>
+
+                <div class="code-box">
+.hlavni-nadpis {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;color: #1d4ed8;<br>
+}<br>
+<br>
+.seznam-vymluv li {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transition: 0.2s;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding: 8px 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border-radius: 8px;<br>
+}<br>
+<br>
+.seznam-vymluv li:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #fde68a;<br>
+}<br>
+<br>
+.w3-link:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;color: #b91c1c;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text-decoration: underline;<br>
+}<br>
+                </div>
+
+                <span class="label">Co mají žáci zkusit:</span>
+                <div class="result-box">
+                    <ol>
+                        <li>Změnit barvu hlavního nadpisu.</li>
+                        <li>Obarvit položky v seznamu po najetí myší.</li>
+                        <li>Proměnit odkaz na W3Schools na výrazné tlačítko.</li>
+                        <li>Přidat rámeček nebo stín obrázku.</li>
+                        <li>U tabulky zkusit barvu řádků při hoveru.</li>
+                    </ol>
+                </div>
+
+                <p>Vysvětlení pro třídu: HTML je kostra a CSS je vzhled. Proto nejdřív připravíte HTML prvky a potom je v CSS vybavíte barvou, mezerami a efekty při najetí myší.</p>
             </section>
             <hr>
             <section id="ukazka">
